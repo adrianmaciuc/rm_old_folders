@@ -28,7 +28,7 @@ def find_old_folders(directory, n_days):
                     old_folders.append(entry.name)
                 else:
                     print(f"Folder '{entry.name}' is skipped.")
-            except ValueError: 
+            except ValueError:
                 print(f"Error parsing timestamp for folder '{entry.name}'. It will be skipped.")
         else:
             print(f"Found folder with name '{entry.name}' that does not match the expected timestamp format. It will be skipped.")
