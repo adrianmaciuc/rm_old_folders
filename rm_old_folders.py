@@ -21,12 +21,15 @@ def find_old_folders(directory, n_days):
     old_folders = []
     for entry in os.scandir(directory):
         if entry.is_dir() and re.match(folder_name_regex, entry.name):
-            folder_date = datetime.strptime(entry.name, "%Y%m%d_%H%M%SZ")
-            time_difference = current_time - folder_date
-            if time_difference > timedelta(days=n_days):
-                old_folders.append(entry.name)
-            else:
-                print(f"Folder '{entry.name}' is skipped.")
+            try:
+                folder_date = datetime.strptime(entry.name, "%Y%m%d_%H%M%SZ")
+                time_difference = current_time - folder_date
+                if time_difference > timedelta(days=n_days):
+                    old_folders.append(entry.name)
+                else:
+                    print(f"Folder '{entry.name}' is skipped.")
+            except ValueError: 
+                print(f"Error parsing timestamp for folder '{entry.name}'. It will be skipped.")
         else:
             print(f"Found folder with name '{entry.name}' that does not match the expected timestamp format. It will be skipped.")
 
