@@ -25,22 +25,19 @@ run: python rm_old_folders.py --n-days 3 --folder-name .
 ## Params
 The script takes mandatory two arguments:
 `--n-days` - Number of days to determine which folders to delete. 
-Example: `--n-days 3` will delete all folders older than 3 days
+- Example: `--n-days 3` will delete all folders older than 3 days
 
 
 `--folder-name` - Folder where the reports are, if the reports are at root, then type `.` (dot) 
-Example: `--folder-name .` will delete all folders from root of the repo
-Example2: `--folder-name reports` will delete all folders from `reports` directory of your repo
+- Example: `--folder-name .` will delete all folders from root of the repo
+- Example2: `--folder-name reports` will delete all folders from `reports` directory of your repo
 
 ## Important details about the script logic
 
-1. Script searches for folders using this regex r'^\d{8}_\d{6}Z$' which will match with this timestamp format `%Y%m%d_%H%M%SZ` 
-Good Example: `20231129_000203Z`
-Bad Examples that will be ignored:
-`whatever_text` 
-`02528502520852`
-`reports 20231129_000203Z` 
+- Script searches for folders using this regex r'^\d{8}_\d{6}Z$' which will match with this timestamp format `%Y%m%d_%H%M%SZ` 
+- Good Example: `20231129_000203Z`
+- Bad Examples: that will be ignored: `whatever_text` `02528502520852` `reports 20231129_000203Z` 
 
 > **Note**  
-> Remember it must match the exact format `%Y%m%d_%H%M%SZ`` start till end, length included
+> Remember it must match the exact format `%Y%m%d_%H%M%SZ`` start till end, length included.
 > For all other scenarios a message will be printed in the console that folder/file is skipped
