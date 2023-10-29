@@ -16,7 +16,7 @@ def find_old_folders(directory, n_days):
         list: List of folder names older than n_days.
     """
     current_time = datetime.utcnow()
-    folder_name_regex = r'^\d{8}_\d{6}Z$'
+    folder_name_regex = re.compile(r'^\d{8}_\d{6}Z$')
 
     old_folders = []
     for entry in os.scandir(directory):
